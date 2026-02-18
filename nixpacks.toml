@@ -1,0 +1,12 @@
+[phases.setup]
+# Vite 7 requires Node >=20.19 or >=22.12; Dokploy defaulted to Node 18.
+nixPkgs = ["nodejs_22", "pnpm-9_x", "openssl"]
+
+[phases.install]
+cmds = ["pnpm i --frozen-lockfile"]
+
+[phases.build]
+cmds = ["pnpm run build"]
+
+[start]
+cmd = "pnpm run start"
