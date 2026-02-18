@@ -30,6 +30,9 @@ export default defineConfig({
     server: {
         port: 3000
     },
+    preview: {
+        allowedHosts: ['console.indobase.fun', 'localhost', '.indobase.fun']
+    },
     test: {
         projects: [
             {
