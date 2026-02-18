@@ -21,22 +21,22 @@
 </script>
 
 <svelte:head>
-    <title>Sign up - Appwrite Education Program</title>
+    <title>Sign up - Indobase Education Program</title>
 </svelte:head>
 
 <div class="content">
     <div class="logos">
         <img
             src={$app.themeInUse === 'light' ? AppwriteLogoLight : AppwriteLogoDark}
-            alt="Appwrite logo" />
+            alt="Indobase logo" />
         <div class="logo-divider"></div>
         <img
             src={$app.themeInUse === 'light' ? GithubLogoLight : GithubLogoDark}
             alt="Github logo" />
     </div>
-    <h1>Join the Appwrite Education Program</h1>
+    <h1>Join the Indobase Education Program</h1>
     <p>
-        Enjoy Appwrite Cloud for free throughout your student journey as part of the GitHub Student
+        Enjoy Indobase Cloud for free throughout your student journey as part of the GitHub Student
         Developer Pack.
     </p>
     <Button fullWidth on:click={onGithubLogin}>

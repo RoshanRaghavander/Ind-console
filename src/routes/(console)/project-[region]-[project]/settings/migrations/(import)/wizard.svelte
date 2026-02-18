@@ -240,10 +240,10 @@
                         </Typography.Text>
 
                         {#if isFirebase}
-                            Appwrite does not impose charges for importing data, but please note
+                            Indobase does not impose charges for importing data, but please note
                             that Firebase may have its own pricing for this service
                         {:else}
-                            You won't be charged for Appwrite bandwidth usage for importing data
+                            You won't be charged for Indobase bandwidth usage for importing data
                         {/if}
                     </Layout.Stack>
                 </Layout.Stack>

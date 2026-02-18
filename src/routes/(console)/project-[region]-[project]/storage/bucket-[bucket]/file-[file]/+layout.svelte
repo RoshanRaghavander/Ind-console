@@ -1,5 +1,5 @@
 <svelte:head>
-    <title>File - Appwrite</title>
+    <title>File - Indobase</title>
 </svelte:head>
 
 <slot />

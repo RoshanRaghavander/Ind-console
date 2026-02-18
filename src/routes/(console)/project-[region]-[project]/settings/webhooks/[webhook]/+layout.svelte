@@ -1,5 +1,5 @@
 <svelte:head>
-    <title>Webhook - Appwrite</title>
+    <title>Webhook - Indobase</title>
 </svelte:head>
 
 <slot />

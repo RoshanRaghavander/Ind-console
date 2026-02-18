@@ -53,12 +53,12 @@
                 <Layout.Stack direction="column" gap={$isSmallViewport ? 's' : 'xs'}>
                     <Typography.Title color="--fgcolor-neutral-primary" size="xl"
                         >{#if $user.name === $user.email}
-                            Welcome to Appwrite
+                            Welcome to Indobase
                         {:else}
                             Welcome, {$user.name}
                         {/if}</Typography.Title>
                     <Typography.Text size="m" color="--fgcolor-neutral-secondary"
-                        >Follow a few quick steps to get started with Appwrite</Typography.Text>
+                        >Follow a few quick steps to get started with Indobase</Typography.Text>
                 </Layout.Stack>
                 <div class="dashboard-header-button">
                     {#if !hasOnboardingDismissed(page.params.project, $user)}

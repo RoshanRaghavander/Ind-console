@@ -15,13 +15,13 @@
                 src="{base}/images/appwrite-logo-dark.svg"
                 width="120"
                 height="22"
-                alt="Appwrite Logo" />
+                alt="Indobase Logo" />
         {:else}
             <img
                 src="{base}/images/appwrite-logo-light.svg"
                 width="120"
                 height="22"
-                alt="Appwrite Logo" />
+                alt="Indobase Logo" />
         {/if}
     </footer>
 </div>

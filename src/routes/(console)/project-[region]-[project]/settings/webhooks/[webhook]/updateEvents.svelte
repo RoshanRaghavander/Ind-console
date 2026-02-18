@@ -114,7 +114,7 @@
 
 <EventModal bind:show={showCreateEvent} on:created={handleEvent}>
     <Typography.Text>
-        Select events in your Appwrite project that will trigger your webhook. <Link.Anchor
+        Select events in your Indobase project that will trigger your webhook. <Link.Anchor
             href="https://appwrite.io/docs/advanced/platform/events"
             target="_blank"
             rel="noopener noreferrer"

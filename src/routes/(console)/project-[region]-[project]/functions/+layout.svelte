@@ -17,7 +17,7 @@
 </script>
 
 <svelte:head>
-    <title>Functions - Appwrite</title>
+    <title>Functions - Indobase</title>
 </svelte:head>
 
 <slot />

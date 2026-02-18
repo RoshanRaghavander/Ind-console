@@ -11,6 +11,7 @@
     import { getFrameworkIcon } from '$lib/stores/sites.js';
     import { isCloud } from '$lib/system';
     import { ID, Query, type Models, Region } from '@appwrite.io/console';
+    import { untrack } from 'svelte';
     import { IconGithub, IconPencil, IconPlus } from '@appwrite.io/pink-icons-svelte';
     import {
         Badge,
@@ -29,12 +30,14 @@
     import { regions as regionsStore } from '$lib/stores/organization';
     import type { AllowedRegions } from '$lib/sdk/billing';
 
-    let { data } = $props();
+    const { data } = $props();
 
     let projects = $state<Models.ProjectList>();
     let selectedProject = $state<string>();
     let selectedOrg = $state(
-        data?.organizations?.total ? data.organizations.teams[0].$id : undefined
+        untrack(() =>
+            data?.organizations?.total ? data.organizations.teams[0].$id : undefined
+        )
     );
     let projectName = $state<string>('');
     let showCustomId = $state(false);
@@ -218,7 +221,7 @@
                                                 padding="none"
                                                 radius="s"
                                                 style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;">
-                                                <Spinner size="m" type="neutral" />
+                                                <Spinner size="m" type="accent" />
                                             </Card.Base>
                                         {/if}
                                         <Image
@@ -360,7 +363,7 @@
                                     label="Organization"
                                     required
                                     placeholder="Select an organization"
-                                    options={data.organizations.teams.map((o) => ({
+                                    options={data.organizations.teams.map((o: Models.Team) => ({
                                         label: o.name,
                                         value: o.$id
                                     }))}
@@ -453,13 +456,13 @@
                 src="{base}/images/appwrite-logo-dark.svg"
                 width="120"
                 height="22"
-                alt="Appwrite Logo" />
+                alt="Indobase Logo" />
         {:else}
             <img
                 src="{base}/images/appwrite-logo-light.svg"
                 width="120"
                 height="22"
-                alt="Appwrite Logo" />
+                alt="Indobase Logo" />
         {/if}
     </footer>
 </div>

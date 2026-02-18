@@ -106,7 +106,7 @@
 </script>
 
 <svelte:head>
-    <title>Bucket - Appwrite</title>
+    <title>Bucket - Indobase</title>
 </svelte:head>
 
 <slot />

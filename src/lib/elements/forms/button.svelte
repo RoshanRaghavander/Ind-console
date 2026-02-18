@@ -115,7 +115,7 @@
         type={submit ? 'submit' : 'button'}>
         <slot name="start" slot="start" />
         {#if ($isSubmitting && submissionLoader) || (forceShowLoader && submissionLoader)}
-            <Spinner size="s" />
+            <Spinner size="s" type="accent" />
         {/if}
         <slot isSubmitting={$isSubmitting} />
         <slot slot="end" name="end" />

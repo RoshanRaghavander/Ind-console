@@ -61,13 +61,13 @@
                         src={AppwriteLogoDark}
                         width="160"
                         class="u-block u-only-dark"
-                        alt="Appwrite Logo" />
+                        alt="Indobase Logo" />
                 {:else}
                     <img
                         src={AppwriteLogoLight}
                         width="160"
                         class="u-block u-only-light"
-                        alt="Appwrite Logo" />
+                        alt="Indobase Logo" />
                 {/if}
             </a>
         </div>
@@ -76,7 +76,7 @@
             <div class="u-flex u-stretch"></div>
 
             <div class="tag-line is-not-mobile">
-                <p>Build like a team of hundreds<span class="underscore">_</span></p>
+                <p>Build like India’s next unicorn</p>
             </div>
         {:else if variation === 'card'}
             <div style:max-inline-size="30rem" style:height="100%">
@@ -173,13 +173,13 @@
                             src={AppwriteLogoDark}
                             width="120"
                             class="u-block u-only-dark"
-                            alt="Appwrite Logo" />
+                            alt="Indobase Logo" />
                     {:else}
                         <img
                             src={AppwriteLogoLight}
                             width="120"
                             class="u-block u-only-light"
-                            alt="Appwrite Logo" />
+                            alt="Indobase Logo" />
                     {/if}
                 </a>
             </div>
@@ -230,8 +230,8 @@
                 block-size: 30%;
                 background: radial-gradient(
                     50% 46.73% at 50% 53.27%,
-                    #fe9567 28.17%,
-                    #fd366e 59.38%
+                    #FFE0B3 28.17%,
+                    #FF9933 59.38%
                 );
                 filter: blur(200px);
 
@@ -284,9 +284,6 @@
             line-height: 100%; /* 80px */
             letter-spacing: -1.6px;
             backdrop-filter: blur(0.5 rem);
-            .underscore {
-                -webkit-text-fill-color: #f02e65;
-            }
         }
     }
 

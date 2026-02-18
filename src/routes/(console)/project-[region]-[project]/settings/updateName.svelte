@@ -44,7 +44,7 @@
 
 <CardGrid>
     <svelte:fragment slot="title">API credentials</svelte:fragment>
-    Access Appwrite services using this project's API Endpoint and Project ID.
+    Access Indobase services using this project's API Endpoint and Project ID.
     <svelte:fragment slot="aside">
         <CopyInput label="Project ID" value={$project.$id} />
         <CopyInput label="API Endpoint" value={getProjectEndpoint()} />

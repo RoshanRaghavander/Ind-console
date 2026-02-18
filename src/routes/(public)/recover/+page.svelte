@@ -67,7 +67,7 @@
 </script>
 
 <svelte:head>
-    <title>Recover - Appwrite</title>
+    <title>Recover - Indobase</title>
 </svelte:head>
 
 <Unauthenticated>

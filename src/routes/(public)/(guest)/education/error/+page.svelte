@@ -15,7 +15,7 @@
 
     const getErrorExplanation = () => {
         if (code === 403) {
-            return 'You can still sign in and explore Appwrite.';
+            return 'You can still sign in and explore Indobase.';
         } else if (code === 409) {
             return "You've already registered for the education program.";
         }

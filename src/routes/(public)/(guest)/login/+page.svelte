@@ -86,7 +86,7 @@
 </script>
 
 <svelte:head>
-    <title>Sign in - Appwrite</title>
+    <title>Sign in - Indobase</title>
 </svelte:head>
 
 <Unauthenticated coupon={data?.couponData} campaign={data?.campaign}>

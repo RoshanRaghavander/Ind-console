@@ -170,7 +170,7 @@
             </Layout.Stack>
         {:else if isSelfHosted && !isVcsEnabled}
             <Alert.Inline status="info" title="Installing Git on a self-hosted instance">
-                Before installing Git in a locally hosted Appwrite project, ensure your environment
+                Before installing Git in a locally hosted Indobase project, ensure your environment
                 variables are configured.
                 <svelte:fragment slot="actions">
                     <FormButton
@@ -209,7 +209,7 @@
         <Card.Base padding="none" border="dashed">
             <Empty type="secondary" title="MCP installation">
                 <svelte:fragment slot="description">
-                    Deploy the Appwrite MCP server with a single click, or view the <PinkLink.Anchor
+                    Deploy the Indobase MCP server with a single click, or view the <PinkLink.Anchor
                         href="https://appwrite.io/docs"
                         target="_blank"
                         rel="noreferrer">docs</PinkLink.Anchor> for instructions.

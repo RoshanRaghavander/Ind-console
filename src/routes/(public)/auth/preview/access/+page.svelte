@@ -122,7 +122,7 @@
 {/if}
 
 <svelte:head>
-    <title>Preview access - Appwrite</title>
+    <title>Preview access - Indobase</title>
 </svelte:head>
 
 <Modal

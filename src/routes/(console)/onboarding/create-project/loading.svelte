@@ -61,7 +61,7 @@
 <div class="grid-container" class:start-animation={startAnimation}>
     <div class="static-loader">
         <Layout.Stack alignItems="center" gap="l">
-            <Spinner />
+            <Spinner type="accent" />
             <Typography.Title size="l">Creating your project</Typography.Title>
 
             <div style="height: 30px">

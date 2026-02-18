@@ -147,7 +147,7 @@
 <Container>
     <CardGrid>
         <svelte:fragment slot="title">Import project data</svelte:fragment>
-        Import data from another platform or from a different Appwrite instance.
+        Import data from another platform or from a different Indobase instance.
         <Link.Anchor
             href="https://appwrite.io/docs/advanced/migrations"
             target="_blank"
@@ -216,7 +216,7 @@
     {#if isSelfHosted}
         <CardGrid>
             <svelte:fragment slot="title">Deploy to Cloud</svelte:fragment>
-            Export data from your project to Appwrite Cloud.
+            Export data from your project to Indobase Cloud.
             <Link.Anchor
                 href="https://appwrite.io/docs/advanced/migrations/self-hosted"
                 target="_blank"

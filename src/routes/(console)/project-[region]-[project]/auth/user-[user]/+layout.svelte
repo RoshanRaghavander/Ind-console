@@ -1,5 +1,5 @@
 <svelte:head>
-    <title>User - Appwrite</title>
+    <title>User - Indobase</title>
 </svelte:head>
 
 <slot />

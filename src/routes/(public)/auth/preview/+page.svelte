@@ -24,12 +24,12 @@
 </script>
 
 <svelte:head>
-    <title>Preview - Appwrite</title>
+    <title>Preview - Indobase</title>
 </svelte:head>
 
 <Layout.Stack alignItems="center" justifyContent="center" style="max-width: 400px">
     <Layout.Stack direction="row" alignItems="center" justifyContent="center" gap="s">
-        <Spinner size="s" />
+        <Spinner size="s" type="accent" />
         <Typography.Text>Authenticating...</Typography.Text>
     </Layout.Stack>
     <Typography.Title size="xl" align="center">

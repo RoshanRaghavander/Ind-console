@@ -345,7 +345,7 @@
                     id="antivirus"
                     bind:checked={antivirus}
                     description="This parameter allows you to configure whether or not the files inside the
-                    bucket should be scanned by the Appwrite Antivirus scanner." />
+                    bucket should be scanned by the Indobase Antivirus scanner." />
             </svelte:fragment>
 
             <svelte:fragment slot="actions">

@@ -98,13 +98,13 @@
             width="120"
             height="22"
             class="u-only-light"
-            alt="Appwrite Logo" />
+            alt="Indobase Logo" />
         <img
             src="{base}/images/appwrite-logo-dark.svg"
             width="120"
             height="22"
             class="u-only-dark"
-            alt="Appwrite Logo" />
+            alt="Indobase Logo" />
         <Card.Base variant="primary" padding="l">
             <Form noStyle onSubmit={createProject}>
                 <CreateProject

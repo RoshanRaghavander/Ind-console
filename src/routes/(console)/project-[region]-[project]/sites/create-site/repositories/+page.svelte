@@ -70,7 +70,7 @@
                             Missing a repository?
                         </Typography.Text>
                         <Typography.Text variation="m-400">
-                            Make sure Appwrite has access to your GitHub repositories. If you chose
+                            Make sure Indobase has access to your GitHub repositories. If you chose
                             specific repos, you may need to update your permissions to include the
                             missing one.
                         </Typography.Text>

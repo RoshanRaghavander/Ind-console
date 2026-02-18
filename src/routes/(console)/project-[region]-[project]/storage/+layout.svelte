@@ -47,7 +47,7 @@
 </script>
 
 <svelte:head>
-    <title>Storage - Appwrite</title>
+    <title>Storage - Indobase</title>
 </svelte:head>
 
 <slot />

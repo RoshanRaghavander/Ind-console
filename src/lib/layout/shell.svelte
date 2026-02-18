@@ -15,6 +15,7 @@
     import { hasOnboardingDismissed } from '$lib/helpers/onboarding';
     import { isSidebarOpen, noWidthTransition } from '$lib/stores/sidebar';
     import { page } from '$app/stores';
+    import { base } from '$app/paths';
     import { BillingPlanGroup, type Models } from '@appwrite.io/console';
     import { getSidebarState, isInDatabasesRoute, updateSidebarState } from '$lib/helpers/sidebar';
     import { isTabletViewport } from '$lib/stores/viewport';
@@ -142,8 +143,8 @@
 
     $: navbarProps = {
         logo: {
-            src: 'https://appwrite.io/images/logos/logo.svg',
-            alt: 'Logo Appwrite'
+            src: `${base}/images/appwrite-logo-light.svg`,
+            alt: 'Logo Indobase'
         },
 
         avatar: sdk.forConsole.avatars

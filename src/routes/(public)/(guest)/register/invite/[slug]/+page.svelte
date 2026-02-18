@@ -98,7 +98,7 @@
 </script>
 
 <svelte:head>
-    <title>Sign up - Appwrite</title>
+    <title>Sign up - Indobase</title>
 </svelte:head>
 
 <Unauthenticated {imgLight} {imgDark}>

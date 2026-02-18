@@ -338,9 +338,9 @@
     <svelte:fragment slot="aside">
         <Card.Base padding="m">
             <Layout.Stack gap="xl">
-                <Typography.Title size="s">Contact the Appwrite Team</Typography.Title>
+                    <Typography.Title size="s">Contact the Indobase Team</Typography.Title>
                 <Typography.Text
-                    >If you found a bug or have questions, please reach out to the Appwrite team. We
+                    >If you found a bug or have questions, please reach out to the Indobase team. We
                     try to respond to all messages within our office hours.</Typography.Text>
                 <Layout.Stack direction="row" gap="s">
                     <Typography.Text>Available:</Typography.Text>

@@ -28,7 +28,7 @@
 </script>
 
 <svelte:head>
-    <title>Settings - Appwrite</title>
+    <title>Settings - Indobase</title>
 </svelte:head>
 
 <slot />

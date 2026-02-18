@@ -95,7 +95,7 @@
 </script>
 
 <svelte:head>
-    <title>Console - Appwrite</title>
+    <title>Console - Indobase</title>
 </svelte:head>
 
 <Container overlapCover>

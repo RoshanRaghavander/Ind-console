@@ -32,7 +32,7 @@
         $id: 'testimonial-signup',
         template: 'review',
         title: randomTestimonial.headline,
-        description: 'Join thousands of developers building amazing apps with Appwrite',
+        description: 'Join thousands of developers building amazing apps with Indobase',
         reviews: [
             {
                 name: randomTestimonial.name,
@@ -124,7 +124,7 @@
 </script>
 
 <svelte:head>
-    <title>Sign up - Appwrite</title>
+    <title>Sign up - Indobase</title>
 </svelte:head>
 
 <Unauthenticated coupon={data?.couponData} campaign={data?.campaign || testimonialCampaign}>

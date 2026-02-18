@@ -12,14 +12,14 @@
     const project = {
         region: 'fra',
         $id: 'appwrite',
-        name: 'Appwrite Project'
+        name: 'Indobase Project'
     } as Models.Project;
 
     const progressCard = { title: 'Get started', percentage: 33 };
     const navbarProps = {
         logo: {
             src: 'https://appwrite.io/images/logos/logo.svg',
-            alt: 'Logo Appwrite'
+            alt: 'Logo Indobase'
         },
         avatar: undefined,
         organizations: []
@@ -27,7 +27,7 @@
 </script>
 
 <svelte:head>
-    <title>Verify Email - Appwrite</title>
+    <title>Verify Email - Indobase</title>
 </svelte:head>
 
 <div class="verify-email-page">

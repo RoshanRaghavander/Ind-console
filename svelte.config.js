@@ -12,10 +12,6 @@ const config = {
         }),
         preprocessMeltUI()
     ]),
-    compilerOptions: {
-        accessors: !!process.env.VITEST
-    },
-
     kit: {
         alias: {
             $routes: './src/routes',

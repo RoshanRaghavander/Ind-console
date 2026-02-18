@@ -111,7 +111,7 @@
 </script>
 
 <svelte:head>
-    <title>{label} key - Appwrite</title>
+    <title>{label} key - Indobase</title>
 </svelte:head>
 
 <Container>

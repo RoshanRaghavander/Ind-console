@@ -45,7 +45,7 @@
 </script>
 
 <svelte:head>
-    <title>Accept invite - Appwrite</title>
+    <title>Accept invite - Indobase</title>
 </svelte:head>
 
 <Unauthenticated>
@@ -63,13 +63,13 @@
                     Please ask the project owner to send you a new invite.
                 </Alert.Inline>
                 <div>
-                    <Button href={`${base}/register`}>Sign up to Appwrite</Button>
+                    <Button href={`${base}/register`}>Sign up to Indobase</Button>
                 </div>
             </Layout.Stack>
         {:else}
             <Layout.Stack>
                 <Typography.Text>
-                    You have been invited to join an organization on Appwrite
+                    You have been invited to join an organization on Indobase
                 </Typography.Text>
                 <Form onSubmit={acceptInvite}>
                     <Layout.Stack>
