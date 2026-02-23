@@ -37,7 +37,7 @@
                 case 'appwrite':
                     imgDark = (await import('$lib/images/appwrite.svg')).default;
                     imgLight = (await import('$lib/images/appwrite.svg')).default;
-                    title = 'Welcome Appwriters!';
+                    title = 'Welcome Indobase users!';
                     break;
                 case 'cloud_beta':
                     break;

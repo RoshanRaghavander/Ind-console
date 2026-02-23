@@ -27,8 +27,7 @@ export const testimonials: Testimonial[] = [
         id: 'sivakumar-indobase',
         logo: LangX,
         headline: 'Content Drop Adral handled millions of requests using Indobase',
-        blurb:
-            "Indobase is the platform India’s next generation of startups will build on—open-source, affordable, and engineered for scale across auth, databases, messaging, and hosting. It lets founders focus on product, not plumbing.",
+        blurb: 'Indobase is the platform India’s next generation of startups will build on—open-source, affordable, and engineered for scale across auth, databases, messaging, and hosting. It lets founders focus on product, not plumbing.',
         name: 'Sivakumar Gingee',
         title: 'CEO, Indobase',
         avatar: LangX

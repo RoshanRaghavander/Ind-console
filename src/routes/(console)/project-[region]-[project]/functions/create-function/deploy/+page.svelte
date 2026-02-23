@@ -161,7 +161,7 @@
 </script>
 
 <svelte:head>
-    <title>Deploy {data.repository.name} - Appwrite</title>
+    <title>Deploy {data.repository.name} - Indobase</title>
 </svelte:head>
 
 <Wizard

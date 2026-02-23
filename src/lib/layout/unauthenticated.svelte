@@ -230,8 +230,8 @@
                 block-size: 30%;
                 background: radial-gradient(
                     50% 46.73% at 50% 53.27%,
-                    #FFE0B3 28.17%,
-                    #FF9933 59.38%
+                    #ffe0b3 28.17%,
+                    #ff9933 59.38%
                 );
                 filter: blur(200px);
 

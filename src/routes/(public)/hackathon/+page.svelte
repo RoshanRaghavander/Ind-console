@@ -11,7 +11,7 @@
 
 <svelte:head>
     <!-- HTML Meta Tags -->
-    <title>Appwrite Cloud - Join Our Hackathon</title>
+    <title>Indobase Cloud - Join Our Hackathon</title>
 </svelte:head>
 
 <div class="wrapper">
@@ -23,7 +23,7 @@
         </h1>
         <ol class="numeric-list">
             <li class="numeric-list-item">
-                <span class="text"> Build an open-source app using Appwrite Cloud</span>
+                <span class="text"> Build an open-source app using Indobase Cloud</span>
             </li>
             <li class="numeric-list-item">
                 <span class="text"> Publish an article on your Hashnode blog </span>
@@ -34,7 +34,7 @@
                         class="link"
                         href="https://builtwith.appwrite.io"
                         target="_blank"
-                        rel="noopener noreferrer">Built with Appwrite</a>
+                        rel="noopener noreferrer">Built with Indobase</a>
                 </span>
             </li>
         </ol>
@@ -52,10 +52,10 @@
             <ul class="inline-links">
                 <li class="inline-links-item" style="padding-inline-start: 0;">
                     <div class="u-only-light">
-                        <img src={CloudLight} alt="Appwrite Cloud" height="15" width="170" />
+                        <img src={CloudLight} alt="Indobase Cloud" height="15" width="170" />
                     </div>
                     <div class="u-only-dark">
-                        <img src={CloudDark} alt="Appwrite Cloud" height="15" width="170" />
+                        <img src={CloudDark} alt="Indobase Cloud" height="15" width="170" />
                     </div>
                 </li>
                 <li class="inline-links-item">
@@ -85,7 +85,7 @@
             </h4>
 
             <div class="u-flex u-flex-vertical u-gap-8 u-margin-block-start-16">
-                <p class="ht-text">+ Appwrite swag</p>
+                <p class="ht-text">+ Indobase swag</p>
                 <p class="ht-text">+ Hashnode T-shirt & mug</p>
             </div>
         </div>
@@ -97,7 +97,7 @@
                 <span class="heading-level-4">1,000</span><span class="heading-level-7">USD</span>
             </h4>
             <div class="u-flex u-flex-vertical u-gap-8 u-margin-block-start-16">
-                <p class="ht-text">+ Appwrite swag</p>
+                <p class="ht-text">+ Indobase swag</p>
                 <p class="ht-text">+ Hashnode T-shirt</p>
             </div>
         </div>

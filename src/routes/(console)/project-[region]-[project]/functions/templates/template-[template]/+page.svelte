@@ -41,7 +41,7 @@
                         src={$app.themeInUse === 'dark' ? AppwriteLogoDark : AppwriteLogoLight}
                         width={120}
                         height={22}
-                        alt="Appwrite" />
+                        alt="Indobase" />
                 </Layout.Stack>
             </PinkCard.Base>
         </div>

@@ -21,7 +21,7 @@
 
     let projectId = ID.unique();
     let projectRegion = Region.Fra;
-    let projectName = 'Appwrite Project';
+    let projectName = 'Indobase Project';
 
     const projectIdForLog = projectId;
 
@@ -85,7 +85,7 @@
 </script>
 
 <svelte:head>
-    <title>Create project - Appwrite</title>
+    <title>Create project - Indobase</title>
 </svelte:head>
 <div
     class="page-container u-flex-vertical u-cross-child-center u-cross-center"

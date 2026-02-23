@@ -77,7 +77,7 @@
 </script>
 
 <svelte:head>
-    <title>Create site - Appwrite</title>
+    <title>Create site - Indobase</title>
 </svelte:head>
 
 <Wizard

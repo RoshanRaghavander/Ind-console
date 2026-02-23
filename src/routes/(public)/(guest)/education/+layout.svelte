@@ -8,7 +8,7 @@
 </script>
 
 <svelte:head>
-    <title>Sign up - Appwrite Education Program</title>
+    <title>Sign up - Indobase Education Program</title>
 </svelte:head>
 <section class="github-education-container">
     <div class="artwork">

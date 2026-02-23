@@ -35,9 +35,7 @@
     let projects = $state<Models.ProjectList>();
     let selectedProject = $state<string>();
     let selectedOrg = $state(
-        untrack(() =>
-            data?.organizations?.total ? data.organizations.teams[0].$id : undefined
-        )
+        untrack(() => (data?.organizations?.total ? data.organizations.teams[0].$id : undefined))
     );
     let projectName = $state<string>('');
     let showCustomId = $state(false);
@@ -161,7 +159,7 @@
 </script>
 
 <svelte:head>
-    <title>Deploy {data.deploymentData.name} - Appwrite</title>
+    <title>Deploy {data.deploymentData.name} - Indobase</title>
 </svelte:head>
 
 <div class="auth-bg">

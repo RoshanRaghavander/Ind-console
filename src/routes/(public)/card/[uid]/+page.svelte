@@ -31,23 +31,23 @@
     let showEmbedCode = false;
 
     $: title =
-        variant === 'owner' ? 'Welcome to Cloud Public Beta' : 'Join Appwrite Cloud Public Beta';
+        variant === 'owner' ? 'Welcome to Cloud Public Beta' : 'Join Indobase Cloud Public Beta';
     $: shareableLink =
         typeof window !== 'undefined' ? `${window.location.origin}/card/${userId}` : '';
     $: embedCode = [
         `<a href="${shareableLink}">`,
-        `\t<img width="350" src="${frontImg}" alt="Appwrite Cloud Card" />`,
+        `\t<img width="350" src="${frontImg}" alt="Indobase Cloud Card" />`,
         `</a>`
     ].join('\n');
     $: twitterText = encodeURIComponent(
         [
-            `Guess what I just received? 💳 My personalized Cloud card from @appwrite! 🚀`,
+            `Guess what I just received? 💳 My personalized Cloud card from Indobase! 🚀`,
             ``,
-            `Appwrite Cloud just announced their Public Beta!`,
+            `Indobase Cloud just announced their Public Beta!`,
             ``,
             `🌥️ Sign up now and claim your own card at ${shareableLink}`,
             ``,
-            `#AppwriteCloud`
+            `#IndobaseCloud`
         ].join('\n')
     );
 
@@ -69,7 +69,7 @@
     }
 
     const seo = {
-        title: 'Appwrite Cloud Card',
+        title: 'Indobase Cloud Card',
         description:
             'Cloud is live in public beta, create your Cloud account and unlock your exclusive card!'
     };

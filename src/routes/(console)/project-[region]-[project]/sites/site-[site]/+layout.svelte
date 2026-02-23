@@ -2,7 +2,7 @@
 </script>
 
 <svelte:head>
-    <title>Site - Appwrite</title>
+    <title>Site - Indobase</title>
 </svelte:head>
 
 <slot />

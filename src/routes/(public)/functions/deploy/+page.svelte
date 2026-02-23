@@ -154,7 +154,7 @@
 </script>
 
 <svelte:head>
-    <title>Deploy {data.deploymentData.name} - Appwrite</title>
+    <title>Deploy {data.deploymentData.name} - Indobase</title>
 </svelte:head>
 
 <div class="auth-bg">

@@ -164,7 +164,7 @@
         } else {
             addNotification({
                 message:
-                    'Your support ticket was submitted successfully. The Appwrite team will get back to you shortly.',
+                    'Your support ticket was submitted successfully. The Indobase team will get back to you shortly.',
                 type: 'success'
             });
         }
@@ -338,7 +338,7 @@
     <svelte:fragment slot="aside">
         <Card.Base padding="m">
             <Layout.Stack gap="xl">
-                    <Typography.Title size="s">Contact the Indobase Team</Typography.Title>
+                <Typography.Title size="s">Contact the Indobase Team</Typography.Title>
                 <Typography.Text
                     >If you found a bug or have questions, please reach out to the Indobase team. We
                     try to respond to all messages within our office hours.</Typography.Text>
