@@ -21,14 +21,23 @@ export const load: LayoutLoad = async ({ depends, url, route }) => {
     depends(Dependencies.ACCOUNT);
     depends(Dependencies.ORGANIZATIONS);
 
-    const [account, error] = (await sdk.forConsole.account
-        .get()
-        .then((response) => [response, null])
-        .catch((error) => [null, error])) as [Account, AppwriteException];
+    const isPublicRoute = route.id?.startsWith('/(public)');
 
     if (url.searchParams.has('forceRedirect')) {
         redirectTo.set(url.searchParams.get('forceRedirect') || null);
         url.searchParams.delete('forceRedirect');
+    }
+
+    let account: Account | null = null;
+    let error: AppwriteException | null = null;
+
+    // Avoid calling /v1/account for public/guest routes to prevent unnecessary
+    // unauthorized-scope errors when no session exists.
+    if (!isPublicRoute) {
+        [account, error] = (await sdk.forConsole.account
+            .get()
+            .then((response) => [response, null])
+            .catch((err) => [null, err])) as [Account, AppwriteException];
     }
 
     if (account) {
@@ -46,17 +55,20 @@ export const load: LayoutLoad = async ({ depends, url, route }) => {
 
         return {
             plansInfo,
-            account: account,
+            account,
             organizations: await getTeamOrOrganizationList()
         };
     }
 
-    const isPublicRoute = route.id?.startsWith('/(public)');
-    if (!isPublicRoute) {
-        url.searchParams.set('redirect', url.pathname);
+    if (isPublicRoute) {
+        // Public routes (including guest auth pages) don't require an account;
+        // let them continue without redirecting or logging auth errors.
+        return {};
     }
 
-    if (error.type === 'user_more_factors_required') {
+    url.searchParams.set('redirect', url.pathname);
+
+    if (error?.type === 'user_more_factors_required') {
         const mfaUrl = resolve('/(authenticated)/mfa');
 
         if (url.pathname === mfaUrl)
@@ -66,14 +78,12 @@ export const load: LayoutLoad = async ({ depends, url, route }) => {
         redirect(303, withParams(mfaUrl, url.searchParams));
     }
 
-    if (!isPublicRoute) {
-        if (isCloud) {
-            checkPricingRefAndRedirect(url.searchParams, true);
-        }
-
-        const loginUrl = resolve('/(public)/(guest)/login');
-        redirect(303, withParams(loginUrl, url.searchParams));
+    if (isCloud) {
+        checkPricingRefAndRedirect(url.searchParams, true);
     }
+
+    const loginUrl = resolve('/(public)/(guest)/login');
+    redirect(303, withParams(loginUrl, url.searchParams));
 };
 
 function withParams(pathname: string, searchParams: URLSearchParams) {
