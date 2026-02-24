@@ -103,20 +103,27 @@ function createPreferences() {
     let teamPreferences: ConsolePreferencesStore = {};
 
     if (browser) {
-        // fresh fetch.
-        sdk.forConsole.account
-            .getPrefs()
-            .then((userPreferences) => {
-                if (!userPreferences?.console || Array.isArray(userPreferences.console)) {
-                    userPreferences.console = {};
-                }
+        const currentUser = get(user);
 
-                set(userPreferences.console);
-            })
-            .catch(() => {
-                // exception is thrown if there's no session; in that case - fallback!
-                set(JSON.parse(globalThis.localStorage.getItem('preferences') ?? '{}'));
-            });
+        // If there's no authenticated user yet, avoid calling /v1/account/prefs
+        // and fall back to stored local preferences instead.
+        if (!currentUser) {
+            set(JSON.parse(globalThis.localStorage.getItem('preferences') ?? '{}'));
+        } else {
+            sdk.forConsole.account
+                .getPrefs()
+                .then((userPreferences) => {
+                    if (!userPreferences?.console || Array.isArray(userPreferences.console)) {
+                        userPreferences.console = {};
+                    }
+
+                    set(userPreferences.console);
+                })
+                .catch(() => {
+                    // exception is thrown if there's no session; in that case - fallback!
+                    set(JSON.parse(globalThis.localStorage.getItem('preferences') ?? '{}'));
+                });
+        }
     }
 
     subscribe((v) => {
