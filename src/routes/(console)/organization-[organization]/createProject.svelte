@@ -6,10 +6,12 @@
     import { InputText, Button } from '$lib/elements/forms';
     import { addNotification } from '$lib/stores/notifications';
     import { sdk } from '$lib/stores/sdk';
-    import { ID } from '@appwrite.io/console';
+    import { ID, Query } from '@appwrite.io/console';
     import { IconPencil } from '@appwrite.io/pink-icons-svelte';
     import { Icon, Layout, Tag } from '@appwrite.io/pink-svelte';
     import { createEventDispatcher } from 'svelte';
+    import { quotaForBillingGroup } from '$lib/saas/quotas';
+    import { isCloud } from '$lib/system';
 
     export let show = false;
     export let teamId: string;
@@ -27,6 +29,24 @@
         try {
             disabled = true;
             showSubmissionLoader = true;
+
+            if (isCloud) {
+                const [plan, projects] = await Promise.all([
+                    sdk.forConsole.organizations.getPlan({
+                        organizationId: teamId
+                    }),
+                    sdk.forConsole.projects.list({
+                        queries: [Query.equal('teamId', teamId), Query.limit(1), Query.select(['$id'])]
+                    })
+                ]);
+
+                const quotas = quotaForBillingGroup(plan.group);
+                if (projects.total >= quotas.maxProjects) {
+                    error = `Project limit reached for this plan (${quotas.maxProjects}). Upgrade your plan to create more projects.`;
+                    return;
+                }
+            }
+
             const project = await sdk.forConsole.projects.create({
                 projectId: id || ID.unique(),
                 name,

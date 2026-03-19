@@ -23,6 +23,7 @@
     import EstimatedTotalBox from '$lib/components/billing/estimatedTotalBox.svelte';
     import { onMount } from 'svelte';
     import type { PageProps } from './$types';
+    import { quotaForBillingGroup } from '$lib/saas/quotas';
 
     const { data }: PageProps = $props();
 
@@ -123,6 +124,16 @@
 
     async function create() {
         try {
+            const quotas = quotaForBillingGroup(selectedPlan.group);
+            const requestedMembers = 1 + (collaborators?.length ?? 0);
+            if (requestedMembers > quotas.maxMembers) {
+                addNotification({
+                    type: 'error',
+                    message: `This plan allows up to ${quotas.maxMembers} members. Reduce invites or choose a higher plan.`
+                });
+                return;
+            }
+
             let org: Models.Organization | Models.PaymentAuthentication;
 
             if (selectedPlan.group === BillingPlanGroup.Starter) {

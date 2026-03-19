@@ -3,7 +3,7 @@
     import { Form } from '$lib/elements/forms';
     import { isCloud } from '$lib/system';
     import { sdk } from '$lib/stores/sdk';
-    import { ID, Region } from '@appwrite.io/console';
+    import { ID, Query, Region } from '@appwrite.io/console';
     import Loading from './loading.svelte';
     import { Dependencies } from '$lib/constants';
     import { Submit, trackError, trackEvent } from '$lib/actions/analytics';
@@ -15,6 +15,7 @@
     import { regions as regionsStore } from '$lib/stores/organization';
     import { user } from '$lib/stores/user';
     import { showOnboardingAnimation } from '$lib/stores/layout';
+    import { quotaForBillingGroup } from '$lib/saas/quotas';
 
     let isLoading = false;
     let startAnimation = false;
@@ -43,6 +44,28 @@
 
         try {
             const teamId = data.organization.$id;
+
+            if (isCloud) {
+                const [plan, projects] = await Promise.all([
+                    sdk.forConsole.organizations.getPlan({
+                        organizationId: teamId
+                    }),
+                    sdk.forConsole.projects.list({
+                        queries: [Query.equal('teamId', teamId), Query.limit(1), Query.select(['$id'])]
+                    })
+                ]);
+
+                const quotas = quotaForBillingGroup(plan.group);
+                if (projects.total >= quotas.maxProjects) {
+                    isLoading = false;
+                    addNotification({
+                        type: 'error',
+                        message: `Project limit reached for this plan (${quotas.maxProjects}). Upgrade your plan to create more projects.`
+                    });
+                    return;
+                }
+            }
+
             const project = await sdk.forConsole.projects.create({
                 projectId: projectId ?? ID.unique(),
                 name: projectName,
