@@ -50,6 +50,7 @@ export const load: PageLoad = async ({ parent, url }) => {
 };
 
 const setToGhStudentMailingList = async (name: string, email: string) => {
+    if (!VARS.GROWTH_ENDPOINT) return;
     const body = name !== '' ? { name, email } : { email };
     return fetch(`${VARS.GROWTH_ENDPOINT}/mailinglists/gh-student`, {
         method: 'POST',

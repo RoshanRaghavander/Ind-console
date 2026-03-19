@@ -6,10 +6,30 @@ export const enum Mode {
     SELF_HOSTED = 'self-hosted'
 }
 
+function normalizePublicUrl(value: string | undefined): string | undefined {
+    if (!value) return undefined;
+
+    const trimmed = value.trim();
+    if (!trimmed) return undefined;
+
+    // Prevent placeholder values from being treated as relative paths.
+    if (trimmed.includes('<') || trimmed.includes('>')) return undefined;
+
+    try {
+        const url = new URL(trimmed);
+        if (url.protocol !== 'http:' && url.protocol !== 'https:') {
+            return undefined;
+        }
+        return url.toString().replace(/\/$/, '');
+    } catch {
+        return undefined;
+    }
+}
+
 export const VARS = {
     CONSOLE_MODE: (env.PUBLIC_CONSOLE_MODE as Mode) ?? undefined,
-    APPWRITE_ENDPOINT: env.PUBLIC_APPWRITE_ENDPOINT ?? undefined,
-    GROWTH_ENDPOINT: env.PUBLIC_GROWTH_ENDPOINT ?? undefined,
+    APPWRITE_ENDPOINT: normalizePublicUrl(env.PUBLIC_APPWRITE_ENDPOINT),
+    GROWTH_ENDPOINT: normalizePublicUrl(env.PUBLIC_GROWTH_ENDPOINT),
     PUBLIC_STRIPE_KEY: env.PUBLIC_STRIPE_KEY ?? undefined,
     EMAIL_VERIFICATION: env.PUBLIC_CONSOLE_EMAIL_VERIFICATION === 'true',
     MOCK_AI_SUGGESTIONS: (env.PUBLIC_CONSOLE_MOCK_AI_SUGGESTIONS ?? 'true') === 'true'

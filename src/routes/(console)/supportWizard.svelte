@@ -149,6 +149,14 @@
             formData.append('attachment', files[0]);
         }
 
+        if (!VARS.GROWTH_ENDPOINT) {
+            addNotification({
+                message: 'Support endpoint is not configured. Please contact your administrator.',
+                type: 'error'
+            });
+            return;
+        }
+
         const response = await fetch(`${VARS.GROWTH_ENDPOINT}/support`, {
             method: 'POST',
             body: formData
