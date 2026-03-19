@@ -3,6 +3,9 @@ import { sveltePreprocess } from 'svelte-preprocess';
 import { preprocessMeltUI, sequence } from '@melt-ui/pp';
 
 /** @type {import('@sveltejs/kit').Config} */
+const configuredBasePath = process.env.CONSOLE_BASE_PATH;
+const basePath = configuredBasePath === undefined ? '/console' : configuredBasePath;
+
 const config = {
     preprocess: sequence([
         sveltePreprocess({
@@ -24,7 +27,7 @@ const config = {
             precompress: true
         }),
         paths: {
-            base: process.env.PREVIEW ? '' : '/console'
+            base: basePath
         }
     },
     vitePlugin: {
