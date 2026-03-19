@@ -11,4 +11,9 @@ namespace App {
         status?: number;
         type?: string;
     }
+
+    interface Locals {
+        requestId: string;
+        tenantId: string | null;
+    }
 }
