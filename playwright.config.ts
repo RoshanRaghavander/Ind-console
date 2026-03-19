@@ -1,5 +1,7 @@
 import { type PlaywrightTestConfig } from '@playwright/test';
 
+const basePath = process.env.CONSOLE_BASE_PATH ?? '/console';
+
 const config: PlaywrightTestConfig = {
     timeout: 120000,
     reportSlowTests: null,
@@ -7,12 +9,13 @@ const config: PlaywrightTestConfig = {
     retries: 3,
     testDir: 'e2e',
     use: {
-        baseURL: 'http://localhost:4173/console/',
+        baseURL: `http://localhost:4173${basePath}/`,
         trace: 'on-first-retry'
     },
     webServer: {
         timeout: 120000,
         env: {
+            CONSOLE_BASE_PATH: basePath,
             PUBLIC_APPWRITE_ENDPOINT: 'https://stage.cloud.appwrite.io/v1',
             PUBLIC_CONSOLE_MODE: 'cloud',
             PUBLIC_APPWRITE_MULTI_REGION: 'true',

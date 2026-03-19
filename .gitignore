@@ -1,4 +1,6 @@
 .DS_Store
+.AppleDouble
+._*
 .envrc
 .vscode
 .zed

@@ -1,6 +1,14 @@
+function escapeRegex(value: string): string {
+    return value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
+
+function getBasePath(): string {
+    return process.env.CONSOLE_BASE_PATH ?? '/console';
+}
+
 export function getOrganizationIdFromUrl(pathname: string) {
-    // TODO: use base path from svelte here
-    const regex = /\/console\/organization-([^/]+)(\/.*)?/;
+    const basePath = escapeRegex(getBasePath());
+    const regex = new RegExp(`${basePath}/organization-([^/]+)(/.*)?$`);
     const match = pathname.match(regex);
 
     if (match) {
@@ -11,8 +19,8 @@ export function getOrganizationIdFromUrl(pathname: string) {
 }
 
 export function getProjectIdFromUrl(pathname: string) {
-    // TODO: use base path from svelte here
-    const regex = /\/console\/project-(?:[a-z]{2,3}-)?([^/]+)(\/.*)?/;
+    const basePath = escapeRegex(getBasePath());
+    const regex = new RegExp(`${basePath}/project-(?:[a-z]{2,3}-)?([^/]+)(/.*)?$`);
     const match = pathname.match(regex);
 
     if (match) {
