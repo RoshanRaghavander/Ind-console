@@ -23,10 +23,14 @@ const handleGithubEducationMembership = async (name: string, email: string) => {
 };
 
 const userVisitedEducationPage = (): boolean => {
-    const didRegisterGithubEducationProgram =
-        localStorage.getItem('githubEducationProgram') === 'true';
-    localStorage.removeItem('githubEducationProgram');
-    return didRegisterGithubEducationProgram || location.pathname.includes('education');
+    try {
+        const didRegisterGithubEducationProgram =
+            localStorage.getItem('githubEducationProgram') === 'true';
+        localStorage.removeItem('githubEducationProgram');
+        return didRegisterGithubEducationProgram || location.pathname.includes('education');
+    } catch {
+        return false;
+    }
 };
 
 export const load: PageLoad = async ({ parent, url }) => {

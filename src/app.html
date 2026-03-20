@@ -41,7 +41,12 @@
     <body data-sveltekit-preload-data="hover" data-loading="true">
         <script>
             let themeInUse = 'auto';
-            const appwrite = localStorage.getItem('appwrite');
+            let appwrite = null;
+            try {
+                appwrite = localStorage.getItem('appwrite');
+            } catch {
+                appwrite = null;
+            }
 
             if (appwrite) {
                 try {

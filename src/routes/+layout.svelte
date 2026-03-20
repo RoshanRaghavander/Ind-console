@@ -29,86 +29,82 @@
     }
 
     onMount(async () => {
-        updateViewport();
-        // handle sources
-        if (isCloud) {
-            const urlParams = page.url.searchParams;
-            const ref = urlParams.get('ref');
-            const utmSource = urlParams.get('utm_source');
-            const utmMedium = urlParams.get('utm_medium');
-            const utmCampaign = urlParams.get('utm_campaign');
-            let referrer = document.referrer.length ? document.referrer : null;
+        try {
+            updateViewport();
+            if (isCloud) {
+                const urlParams = page.url.searchParams;
+                const ref = urlParams.get('ref');
+                const utmSource = urlParams.get('utm_source');
+                const utmMedium = urlParams.get('utm_medium');
+                const utmCampaign = urlParams.get('utm_campaign');
+                let referrer = document.referrer.length ? document.referrer : null;
 
-            // Skip our own
-            if (referrer?.includes('//appwrite.io')) {
-                referrer = null;
+                if (referrer?.includes('//appwrite.io')) {
+                    referrer = null;
+                }
+
+                if (ref || referrer || utmSource || utmCampaign || utmMedium) {
+                    sdk.forConsole.sources.create(ref, referrer, utmSource, utmCampaign, utmMedium);
+                }
+
+                if (referrer || ref) {
+                    sessionStorage.setItem('utmReferral', referrer ? referrer : (ref ?? ''));
+                }
+                if (utmSource) {
+                    sessionStorage.setItem('utmSource', utmSource);
+                }
+                if (utmMedium) {
+                    sessionStorage.setItem('utmMedium', utmMedium);
+                }
+                if (utmCampaign) {
+                    sessionStorage.setItem('utmCampaign', utmCampaign);
+                }
             }
 
-            if (ref || referrer || utmSource || utmCampaign || utmMedium) {
-                sdk.forConsole.sources.create(ref, referrer, utmSource, utmCampaign, utmMedium);
+            if (page.url.searchParams.has('migrate')) {
+                const migrateData = page.url.searchParams.get('migrate');
+                requestedMigration.set(parseIfString(migrateData) as Record<string, string>);
             }
 
-            if (referrer || ref) {
-                sessionStorage.setItem('utmReferral', referrer ? referrer : (ref ?? ''));
-            }
-            if (utmSource) {
-                sessionStorage.setItem('utmSource', utmSource);
-            }
-            if (utmMedium) {
-                sessionStorage.setItem('utmMedium', utmMedium);
-            }
-            if (utmCampaign) {
-                sessionStorage.setItem('utmCampaign', utmCampaign);
-            }
-        }
+            if (page.url.searchParams.has('code')) {
+                const code = page.url.searchParams.get('code');
+                const coupon = await sdk.forConsole.console
+                    .getCoupon({
+                        couponId: code
+                    })
+                    .catch<null>(() => null);
+                if (coupon?.campaign) {
+                    const campaign = await sdk.forConsole.console
+                        .getCampaign({ campaignId: coupon.campaign })
+                        .catch<null>(() => null);
 
-        if (page.url.searchParams.has('migrate')) {
-            const migrateData = page.url.searchParams.get('migrate');
-            requestedMigration.set(parseIfString(migrateData) as Record<string, string>);
-        }
+                    if (campaign && $user) {
+                        goto(`${base}/apply-credit?${page.url.searchParams}`);
+                        return;
+                    }
+                }
+            }
 
-        if (page.url.searchParams.has('code')) {
-            const code = page.url.searchParams.get('code');
-            const coupon = await sdk.forConsole.console
-                .getCoupon({
-                    couponId: code
-                })
-                .catch<null>(() => null);
-            if (coupon?.campaign) {
+            if ($user && page.url.searchParams.has('campaign')) {
+                const campaignId = page.url.searchParams.get('campaign');
                 const campaign = await sdk.forConsole.console
-                    .getCampaign({ campaignId: coupon.campaign })
+                    .getCampaign({ campaignId })
                     .catch<null>(() => null);
 
-                if (campaign && $user) {
+                if (campaign) {
                     goto(`${base}/apply-credit?${page.url.searchParams}`);
-                    loading.set(false);
                     return;
                 }
             }
+
+            isSmallViewport.subscribe(() => {
+                if ($feedback.show) {
+                    feedback.toggleFeedback();
+                }
+            });
+        } finally {
+            loading.set(false);
         }
-
-        if ($user && page.url.searchParams.has('campaign')) {
-            const campaignId = page.url.searchParams.get('campaign');
-            const campaign = await sdk.forConsole.console
-                .getCampaign({ campaignId })
-                .catch<null>(() => null);
-
-            if (campaign) {
-                goto(`${base}/apply-credit?${page.url.searchParams}`);
-
-                loading.set(false);
-                return;
-            }
-        }
-
-        loading.set(false);
-
-        isSmallViewport.subscribe(() => {
-            // reset the feedback form if the viewport changed else it requires dual click.
-            if ($feedback.show) {
-                feedback.toggleFeedback();
-            }
-        });
     });
 
     afterNavigate((navigation) => {
