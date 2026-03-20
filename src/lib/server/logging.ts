@@ -37,7 +37,9 @@ export function logRequest(log: Omit<LogEvent, 'level' | 'message'>): void {
     });
 }
 
-export function logSecurityWarn(log: Omit<LogEvent, 'level' | 'message'> & { message: string }): void {
+export function logSecurityWarn(
+    log: Omit<LogEvent, 'level' | 'message'> & { message: string }
+): void {
     emit({
         level: 'warn',
         ...log

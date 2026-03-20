@@ -11,11 +11,11 @@ export const load: LayoutLoad = async ({ parent, url }) => {
     const providerPullRequestId = url.searchParams.get('providerPullRequestId');
 
     if (!installationId || !repositoryId || !providerPullRequestId) {
-        redirect(303, `${base}`);
+        throw redirect(303, `${base}`);
     }
 
     if (!account) {
-        redirect(303, `${base}`);
+        throw redirect(303, `${base}`);
     }
 
     return {

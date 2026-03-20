@@ -8,12 +8,12 @@ export const load: PageLoad = async ({ url, params }) => {
     const repository = url.searchParams.get('repo') || url.searchParams.get('repository');
 
     if (!repository) {
-        redirect(302, `${base}/project-${params.region}-${params.project}/sites`);
+        throw redirect(302, `${base}/project-${params.region}-${params.project}/sites`);
     }
 
     const info = getRepositoryInfo(repository);
     if (!info) {
-        redirect(302, `${base}/project-${params.region}-${params.project}/sites`);
+        throw redirect(302, `${base}/project-${params.region}-${params.project}/sites`);
     }
 
     const envParam = url.searchParams.get('env');

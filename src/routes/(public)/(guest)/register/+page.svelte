@@ -86,7 +86,10 @@
                 if (redirect) {
                     await goto(`${redirect}${page.url.search}`);
                 } else if (isCloud) {
-                    checkPricingRefAndRedirect(page.url.searchParams);
+                    const didRedirect = checkPricingRefAndRedirect(page.url.searchParams);
+                    if (!didRedirect) {
+                        await goto(base);
+                    }
                 } else {
                     await goto(`${base}/${page.url.search ?? ''}`);
                 }

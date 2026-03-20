@@ -16,14 +16,14 @@ export const load: PageLoad = async ({ parent, url }) => {
 
     if (!account) {
         redirectTo.set(fullUrl);
-        redirect(302, base + '/login?redirect=' + encodeURIComponent(fullUrl));
+        throw redirect(302, base + '/login?redirect=' + encodeURIComponent(fullUrl));
     }
 
     const runtime = url.searchParams.get('runtime');
     const repository = url.searchParams.get('repo') || url.searchParams.get('repository');
 
     if (!repository) {
-        redirect(302, base + '/');
+        throw redirect(302, base + '/');
     }
 
     // Get common parameters
@@ -56,7 +56,7 @@ export const load: PageLoad = async ({ parent, url }) => {
 
     const info = getRepositoryInfo(repository);
     if (!info) {
-        redirect(302, base + '/');
+        throw redirect(302, base + '/');
     }
 
     deploymentData.name = name || info.name;

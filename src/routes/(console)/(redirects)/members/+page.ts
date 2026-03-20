@@ -7,7 +7,7 @@ export const load: PageLoad = async ({ parent }) => {
 
     const teamId = account.prefs.organization ?? organizations.teams[0]?.$id;
     if (teamId) {
-        redirect(303, `${base}/organization-${teamId}/members`);
+        throw redirect(303, `${base}/organization-${teamId}/members`);
     }
-    redirect(303, base);
+    throw redirect(303, base);
 };

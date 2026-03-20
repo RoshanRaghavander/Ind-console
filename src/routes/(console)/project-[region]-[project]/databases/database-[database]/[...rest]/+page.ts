@@ -62,7 +62,7 @@ export const load: PageLoad = async ({ params, url }) => {
         const rewrittenSegments = rewriteLegacySegments(restSegments);
         const newPath = `${baseUrl}/${rewrittenSegments.join('/')}`;
 
-        redirect(308, newPath + url.search);
+        throw redirect(308, newPath + url.search);
     }
 
     throw new AppwriteException('Not Found', 404);

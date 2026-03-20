@@ -16,18 +16,18 @@ export const load: PageLoad = async ({ parent, url }) => {
 
     if (!account) {
         redirectTo.set(fullUrl);
-        redirect(302, base + '/login?redirect=' + encodeURIComponent(fullUrl));
+        throw redirect(302, base + '/login?redirect=' + encodeURIComponent(fullUrl));
     }
 
     const templateKey = url.searchParams.get('template');
     const repository = url.searchParams.get('repo') || url.searchParams.get('repository');
 
     if (!templateKey && !repository) {
-        redirect(302, base + '/');
+        throw redirect(302, base + '/');
     }
 
     if (templateKey && repository) {
-        error(400, 'Cannot specify both template and repo parameters');
+        throw error(400, 'Cannot specify both template and repo parameters');
     }
 
     // Get common parameters
@@ -59,12 +59,12 @@ export const load: PageLoad = async ({ parent, url }) => {
                 screenshot: screenshot || template.screenshotLight
             };
         } catch (e) {
-            error(404, `Template "${templateKey}" not found`);
+            throw error(404, `Template "${templateKey}" not found`);
         }
     } else {
         const info = getRepositoryInfo(repository);
         if (!info) {
-            redirect(302, base + '/');
+            throw redirect(302, base + '/');
         }
 
         deploymentData = {

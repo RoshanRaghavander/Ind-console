@@ -20,7 +20,7 @@ export const load = async ({ url }) => {
             }
             return { couponData, campaign };
         } catch (e) {
-            redirect(303, resolve('/'));
+            throw redirect(303, resolve('/'));
         }
     }
     // Has campaign
@@ -31,11 +31,11 @@ export const load = async ({ url }) => {
             campaign = await sdk.forConsole.console.getCampaign({ campaignId });
             return { campaign };
         } catch (e) {
-            redirect(303, resolve('/'));
+            throw redirect(303, resolve('/'));
         }
     }
     // No campaign or promo code
     else {
-        redirect(303, resolve('/'));
+        throw redirect(303, resolve('/'));
     }
 };

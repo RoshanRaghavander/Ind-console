@@ -4,6 +4,6 @@ import type { LayoutLoad } from './$types';
 
 export const load: LayoutLoad = async () => {
     if (isSelfHosted) {
-        error(501, 'Not available in self hosted.');
+        throw error(501, 'Not available in self hosted.');
     }
 };

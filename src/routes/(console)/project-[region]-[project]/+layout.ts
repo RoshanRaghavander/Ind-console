@@ -20,7 +20,7 @@ export const load: LayoutLoad = async ({ params, depends, parent }) => {
     const project = await sdk.forConsole.projects.get({ projectId: params.project });
     if (project.status !== 'active') {
         // project isn't active, redirect back to organizations page
-        redirect(
+        throw redirect(
             303,
             resolve('/(console)/organization-[organization]', {
                 organization: project.teamId
@@ -60,7 +60,7 @@ export const load: LayoutLoad = async ({ params, depends, parent }) => {
     // not the right organization project based on platform,
     // redirect to organization, and it should handle the rest!
     if (isCloud && organization.platform !== Platform.Appwrite) {
-        redirect(
+        throw redirect(
             303,
             resolve('/(console)/organization-[organization]', {
                 organization: organization.$id

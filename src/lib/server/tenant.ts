@@ -22,12 +22,15 @@ export function resolveTenantId(event: RequestEvent): string | null {
     return extractTenantFromPath(event.url.pathname);
 }
 
-export function ensureTenantAccess(event: RequestEvent): { ok: true } | { ok: false; reason: string } {
+export function ensureTenantAccess(
+    event: RequestEvent
+): { ok: true } | { ok: false; reason: string } {
     const headerTenant = event.request.headers.get(TENANT_HEADER);
     const resolvedTenant = event.locals.tenantId;
 
     if (!resolvedTenant) return { ok: false, reason: 'Missing tenant context' };
-    if (headerTenant && headerTenant !== resolvedTenant) return { ok: false, reason: 'Tenant mismatch' };
+    if (headerTenant && headerTenant !== resolvedTenant)
+        return { ok: false, reason: 'Tenant mismatch' };
 
     return { ok: true };
 }

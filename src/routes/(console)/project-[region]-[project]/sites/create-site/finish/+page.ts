@@ -6,7 +6,7 @@ import { DeploymentResourceType } from '$lib/stores/sdk';
 
 export const load = async ({ url, depends, params }) => {
     depends(Dependencies.SITE);
-    if (!url.searchParams.has('site')) error(404, 'Deployment is not optional');
+    if (!url.searchParams.has('site')) throw error(404, 'Deployment is not optional');
     const siteId = url.searchParams.get('site');
     const site = await sdk.forProject(params.region, params.project).sites.get({ siteId });
     const proxyRuleList = await sdk.forProject(params.region, params.project).proxy.listRules({

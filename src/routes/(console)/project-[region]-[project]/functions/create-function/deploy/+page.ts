@@ -10,12 +10,12 @@ export const load: PageLoad = async ({ url, params, parent }) => {
     const repository = url.searchParams.get('repo') || url.searchParams.get('repository');
 
     if (!repository) {
-        redirect(302, `${base}/project-${params.region}-${params.project}/functions`);
+        throw redirect(302, `${base}/project-${params.region}-${params.project}/functions`);
     }
 
     const info = getRepositoryInfo(repository);
     if (!info) {
-        redirect(302, `${base}/project-${params.region}-${params.project}/functions`);
+        throw redirect(302, `${base}/project-${params.region}-${params.project}/functions`);
     }
 
     const envParam = url.searchParams.get('env');

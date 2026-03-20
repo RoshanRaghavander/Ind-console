@@ -17,7 +17,7 @@ test('upgrade - free tier', async ({ page }) => {
         await page.waitForSelector('button#method[role="combobox"]');
 
         // skip members
-        await page.getByRole('button', { name: 'change plan' }).click();
+        await page.getByRole('button', { name: /change plan/i }).click();
         await page.waitForURL(/\/console\/project-(?:[a-z0-9]+-)?([^/]+)\/get-started/);
     });
 });

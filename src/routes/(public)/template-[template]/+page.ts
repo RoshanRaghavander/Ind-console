@@ -12,11 +12,11 @@ export const load = async ({ parent, url, params }) => {
 
     if (!account && !isCloud) {
         redirectTo.set(url.pathname + url.search);
-        redirect(302, base + '/login?redirect=' + url.pathname + url.search);
+        throw redirect(302, base + '/login?redirect=' + url.pathname + url.search);
     }
 
     if (!url.searchParams.has('type')) {
-        error(404, 'Type is not optional');
+        throw error(404, 'Type is not optional');
     }
 
     const product = url.searchParams.get('type');
@@ -34,7 +34,7 @@ export const load = async ({ parent, url, params }) => {
             });
             break;
         default:
-            error(404, 'Type is not valid');
+            throw error(404, 'Type is not valid');
     }
 
     const organizations = account?.$id ? await getTeamOrOrganizationList() : undefined;

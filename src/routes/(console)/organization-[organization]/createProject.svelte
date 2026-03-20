@@ -36,7 +36,11 @@
                         organizationId: teamId
                     }),
                     sdk.forConsole.projects.list({
-                        queries: [Query.equal('teamId', teamId), Query.limit(1), Query.select(['$id'])]
+                        queries: [
+                            Query.equal('teamId', teamId),
+                            Query.limit(1),
+                            Query.select(['$id'])
+                        ]
                     })
                 ]);
 

@@ -18,15 +18,17 @@ export function registerUserStep(page: Page): Promise<Metadata> {
         };
         const values = {
             name: 'testuser ' + seed,
-            email: 'testuser+' + seed + '@apppwrite.io',
-            password: 'testuser+' + seed + '@apppwrite.io'
+            email: `testuser-${seed}@appwrite.io`,
+            password: `Testuser-${seed}-pass`
         };
         await inputs.name.fill(values.name);
         await inputs.email.fill(values.email);
         await inputs.password.fill(values.password);
         await inputs.terms.check({ force: true });
         await page.getByRole('button', { name: 'Sign up', exact: true }).click();
-        await page.waitForURL('./onboarding/create-project');
+        await page.waitForURL(/\/(onboarding\/create-project|organization-[^/]+)(?:\/|$)/, {
+            waitUntil: 'commit'
+        });
 
         return values;
     });

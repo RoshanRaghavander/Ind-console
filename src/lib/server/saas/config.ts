@@ -65,7 +65,9 @@ function parseFeatureFlags(raw: string | undefined, fallback: FeatureFlags): Fea
         const parsed = JSON.parse(raw);
         if (!parsed || typeof parsed !== 'object') return fallback;
         return Object.fromEntries(
-            Object.entries(parsed).filter((entry): entry is [string, boolean] => typeof entry[1] === 'boolean')
+            Object.entries(parsed).filter(
+                (entry): entry is [string, boolean] => typeof entry[1] === 'boolean'
+            )
         );
     } catch {
         return fallback;
@@ -79,7 +81,10 @@ function readPlan(name: PlanName): PlanConfig {
     return {
         maxProjects: parsePositiveInt(privateEnv[`${prefix}MAX_PROJECTS`], fallback.maxProjects),
         maxMembers: parsePositiveInt(privateEnv[`${prefix}MAX_MEMBERS`], fallback.maxMembers),
-        maxStorageGb: parsePositiveInt(privateEnv[`${prefix}MAX_STORAGE_GB`], fallback.maxStorageGb),
+        maxStorageGb: parsePositiveInt(
+            privateEnv[`${prefix}MAX_STORAGE_GB`],
+            fallback.maxStorageGb
+        ),
         apiRateLimitPerMinute: parsePositiveInt(
             privateEnv[`${prefix}API_RATE_LIMIT_PER_MINUTE`],
             fallback.apiRateLimitPerMinute

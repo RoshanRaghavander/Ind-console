@@ -7,7 +7,7 @@ import { getTeamOrOrganizationList } from '$lib/stores/organization';
 
 export const load = async ({ params, parent, depends }) => {
     if (!isCloud) {
-        redirect(
+        throw redirect(
             303,
             resolve('/(console)/organization-[organization]', {
                 organization: params.organization

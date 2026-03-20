@@ -8,8 +8,8 @@ export const load: PageLoad = async ({ params, parent }) => {
     const baseRedirectUrl = `${base}/project-${params.region}-${params.project}`;
 
     if (!hasOnboardingDismissed(params.project, account)) {
-        redirect(302, `${baseRedirectUrl}/get-started`);
+        throw redirect(302, `${baseRedirectUrl}/get-started`);
     } else {
-        redirect(302, `${baseRedirectUrl}/overview/platforms`);
+        throw redirect(302, `${baseRedirectUrl}/overview/platforms`);
     }
 };

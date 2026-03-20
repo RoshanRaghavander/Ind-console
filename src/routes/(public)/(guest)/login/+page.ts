@@ -21,9 +21,9 @@ export const load: PageLoad = async ({ url }) => {
                     couponData,
                     campaign
                 };
-            } else redirect(303, resolve('/login'));
+            } else throw redirect(303, resolve('/login'));
         } catch (e) {
-            redirect(303, resolve('/login'));
+            throw redirect(303, resolve('/login'));
         }
     }
 
@@ -34,7 +34,7 @@ export const load: PageLoad = async ({ url }) => {
             campaign = await sdk.forConsole.console.getCampaign({ campaignId });
             return { campaign };
         } catch (e) {
-            redirect(303, resolve('/login'));
+            throw redirect(303, resolve('/login'));
         }
     }
     return;

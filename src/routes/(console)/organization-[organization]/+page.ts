@@ -10,7 +10,7 @@ import { resolve } from '$app/paths';
 export const load: PageLoad = async ({ params, url, route, depends, parent }) => {
     const { scopes } = await parent();
     if (!scopes.includes('projects.read') && scopes.includes('billing.read')) {
-        return redirect(
+        throw redirect(
             301,
             resolve('/(console)/organization-[organization]/billing', {
                 organization: params.organization

@@ -9,7 +9,7 @@ export const load = async ({ parent, url }) => {
     const path = url.searchParams.get('path');
 
     if (!account) {
-        redirect(
+        throw redirect(
             303,
             `${base}/auth/preview/access?origin=${origin}&path=${path}&projectId=${projectId}`
         );

@@ -13,12 +13,16 @@ export function checkPricingRefAndRedirect(searchParams: URLSearchParams, should
                 : goto(
                       `${base}/create-organization?type=create${hasPlan ? `&plan=${searchParams.get('plan')}` : ''}`
                   );
+            return true;
         }
         //Legacy
         if (paramType === 'createPro') {
             shouldRegister
                 ? goto(`${base}/register?type=create&plan=tier-1`)
                 : goto(`${base}/create-organization?type=create&plan=tier-1`);
+            return true;
         }
     }
+
+    return false;
 }

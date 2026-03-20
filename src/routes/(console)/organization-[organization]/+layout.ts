@@ -79,7 +79,7 @@ export const load: LayoutLoad = async ({ params, depends, parent }) => {
     } catch (e) {
         const newPrefs = { ...prefs, organization: null };
         sdk.forConsole.account.updatePrefs({ prefs: newPrefs });
-        error(e.code, e.message);
+        throw error(e.code, e.message);
     }
 };
 
@@ -130,7 +130,7 @@ async function checkPlatformAndRedirect(
 
         // exists, lets redirect!
         if (samePlatformOrganization) {
-            redirect(
+            throw redirect(
                 303,
                 resolve('/(console)/organization-[organization]', {
                     organization: samePlatformOrganization.$id
@@ -146,17 +146,17 @@ async function checkPlatformAndRedirect(
                 })) as Models.Organization;
 
                 // exists and is valid, redirect
-                redirect(
+                throw redirect(
                     303,
                     resolve('/(console)/organization-[organization]', {
                         organization: orgFromPrefs.$id
                     })
                 );
             } catch (e) {
-                redirect(303, resolve('/(console)'));
+                throw redirect(303, resolve('/(console)'));
             }
         } else {
-            redirect(303, resolve('/(console)'));
+            throw redirect(303, resolve('/(console)'));
         }
     }
 }

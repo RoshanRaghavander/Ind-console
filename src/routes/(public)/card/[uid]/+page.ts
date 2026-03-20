@@ -1,5 +1,6 @@
 import { getApiEndpoint } from '$lib/stores/sdk';
 import { redirect } from '@sveltejs/kit';
+import { resolve } from '$app/paths';
 
 function getCardImgUrls(userId: string, endpoint: string) {
     const resolved = endpoint;
@@ -35,7 +36,7 @@ export async function load({ params, parent }) {
         const res = await fetch(frontImg);
 
         if (!res.ok) {
-            redirect(303, '/');
+            throw redirect(303, resolve('/'));
         }
 
         return {
@@ -52,6 +53,6 @@ export async function load({ params, parent }) {
         };
     } catch (e) {
         console.error(e);
-        redirect(303, '/');
+        throw redirect(303, resolve('/'));
     }
 }

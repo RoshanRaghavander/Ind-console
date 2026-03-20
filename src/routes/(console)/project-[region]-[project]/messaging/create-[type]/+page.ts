@@ -21,7 +21,7 @@ function getComponent(type: string) {
 
 export const load: PageLoad = async ({ params }) => {
     if (!isValueOfStringEnum(MessagingProviderType, params.type)) {
-        error(401, 'Invalid provider type');
+        throw error(401, 'Invalid provider type');
     }
 
     return {

@@ -13,11 +13,11 @@ const handleGithubEducationMembership = async (name: string, email: string) => {
         await setToGhStudentMailingList(name, email);
     } catch (error) {
         if (error.code === 409) {
-            redirect(303, resolve('/(console)/account/organizations'));
+            throw redirect(303, resolve('/(console)/account/organizations'));
         } else {
             await sdk.forConsole.account.deleteSession({ sessionId: 'current' });
             const errorUrl = resolve('/(public)/(guest)/education/error');
-            redirect(303, `${errorUrl}?message=${error.message}&code=${error.code}`);
+            throw redirect(303, `${errorUrl}?message=${error.message}&code=${error.code}`);
         }
     }
 };
@@ -36,16 +36,16 @@ export const load: PageLoad = async ({ parent, url }) => {
 
     if (userVisitedEducationPage()) {
         await handleGithubEducationMembership(account.name, account.email);
-        redirect(303, resolve('/'));
+        throw redirect(303, resolve('/'));
     } else if (organizations.total && !isApplyingCredit) {
         const teamId = account.prefs.organization ?? organizations.teams[0].$id;
         if (!teamId) {
-            redirect(303, `${base}/account/organizations${url.search}`);
+            throw redirect(303, `${base}/account/organizations${url.search}`);
         } else {
-            redirect(303, `${base}/organization-${teamId}${url.search}`);
+            throw redirect(303, `${base}/organization-${teamId}${url.search}`);
         }
     } else if (!isApplyingCredit) {
-        redirect(303, `${base}/onboarding/create-project${url.search}`);
+        throw redirect(303, `${base}/onboarding/create-organization${url.search}`);
     }
 };
 

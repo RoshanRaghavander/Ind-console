@@ -1,6 +1,13 @@
 import { type PlaywrightTestConfig } from '@playwright/test';
 
-const basePath = process.env.CONSOLE_BASE_PATH ?? '/console';
+type GlobalThisWithProcess = typeof globalThis & {
+    process?: {
+        env?: Record<string, string | undefined>;
+    };
+};
+
+const basePath =
+    (globalThis as GlobalThisWithProcess).process?.env?.CONSOLE_BASE_PATH ?? '/console';
 
 const config: PlaywrightTestConfig = {
     timeout: 120000,
@@ -22,7 +29,7 @@ const config: PlaywrightTestConfig = {
             PUBLIC_STRIPE_KEY:
                 'pk_test_51LT5nsGYD1ySxNCyd7b304wPD8Y1XKKWR6hqo6cu3GIRwgvcVNzoZv4vKt5DfYXL1gRGw4JOqE19afwkJYJq1g3K004eVfpdWn'
         },
-        command: 'bun run build && bun run preview',
+        command: 'corepack pnpm run build && corepack pnpm run preview',
         port: 4173
     }
 };

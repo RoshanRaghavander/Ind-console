@@ -6,7 +6,7 @@ import { base } from '$app/paths';
 export const load: PageLoad = async ({ parent }) => {
     const { mfaRequired } = await parent();
     if (!mfaRequired) {
-        redirect(303, base);
+        throw redirect(303, base);
     }
     return {
         factors: await sdk.forConsole.account.listMFAFactors()

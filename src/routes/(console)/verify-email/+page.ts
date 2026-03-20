@@ -8,7 +8,7 @@ import { VARS } from '$lib/system';
 
 export const load: PageLoad = async ({ parent, depends, url }) => {
     if (!VARS.EMAIL_VERIFICATION) {
-        redirect(303, resolve('/'));
+        throw redirect(303, resolve('/'));
     }
 
     const { account } = await parent();
@@ -18,7 +18,7 @@ export const load: PageLoad = async ({ parent, depends, url }) => {
     const secret = url.searchParams.get('secret') ?? null;
 
     if (account && account.emailVerification === true) {
-        redirect(303, resolve('/'));
+        throw redirect(303, resolve('/'));
     } else if (user && secret) {
         try {
             await sdk.forConsole.account.updateVerification({
@@ -36,9 +36,8 @@ export const load: PageLoad = async ({ parent, depends, url }) => {
                 type: 'error',
                 message: error.message
             });
-        } finally {
-            redirect(303, resolve('/'));
         }
+        throw redirect(303, resolve('/'));
     }
     return {};
 };

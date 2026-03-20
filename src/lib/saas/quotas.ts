@@ -46,6 +46,6 @@ export const DEFAULT_SAAS_QUOTAS: Record<'free' | 'pro' | 'enterprise', SaaSQuot
 
 export function quotaForBillingGroup(group: string | undefined): SaaSQuota {
     if (group === BillingPlanGroup.Pro) return DEFAULT_SAAS_QUOTAS.pro;
-    if (group === BillingPlanGroup.Enterprise) return DEFAULT_SAAS_QUOTAS.enterprise;
+    if (group === BillingPlanGroup.Scale) return DEFAULT_SAAS_QUOTAS.enterprise;
     return DEFAULT_SAAS_QUOTAS.free;
 }

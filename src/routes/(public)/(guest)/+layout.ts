@@ -6,6 +6,6 @@ export const load: LayoutLoad = async ({ parent }) => {
     const { account } = await parent();
 
     if (account) {
-        redirect(303, base);
+        throw redirect(303, base);
     }
 };

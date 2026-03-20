@@ -31,14 +31,10 @@ export const load: LayoutLoad = async ({ depends, url, route }) => {
     let account: Account | null = null;
     let error: AppwriteException | null = null;
 
-    // Avoid calling /v1/account for public/guest routes to prevent unnecessary
-    // unauthorized-scope errors when no session exists.
-    if (!isPublicRoute) {
-        [account, error] = (await sdk.forConsole.account
-            .get()
-            .then((response) => [response, null])
-            .catch((err) => [null, err])) as [Account, AppwriteException];
-    }
+    [account, error] = (await sdk.forConsole.account
+        .get()
+        .then((response) => [response, null])
+        .catch((err) => [null, err])) as [Account, AppwriteException];
 
     if (account) {
         if (isCloud && !account.emailVerification && VARS.EMAIL_VERIFICATION) {
@@ -46,7 +42,7 @@ export const load: LayoutLoad = async ({ depends, url, route }) => {
             const isVerifyEmailPage = url.pathname === resolve('/verify-email');
 
             if (isConsoleRoute && !isVerifyEmailPage) {
-                redirect(303, resolve('/verify-email'));
+                throw redirect(303, resolve('/verify-email'));
             }
         }
 
@@ -75,7 +71,7 @@ export const load: LayoutLoad = async ({ depends, url, route }) => {
             return {
                 mfaRequired: true
             };
-        redirect(303, withParams(mfaUrl, url.searchParams));
+        throw redirect(303, withParams(mfaUrl, url.searchParams));
     }
 
     if (isCloud) {
@@ -83,7 +79,7 @@ export const load: LayoutLoad = async ({ depends, url, route }) => {
     }
 
     const loginUrl = resolve('/(public)/(guest)/login');
-    redirect(303, withParams(loginUrl, url.searchParams));
+    throw redirect(303, withParams(loginUrl, url.searchParams));
 };
 
 function withParams(pathname: string, searchParams: URLSearchParams) {

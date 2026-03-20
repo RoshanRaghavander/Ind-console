@@ -11,7 +11,7 @@ export const load: PageLoad = async ({ params }) => {
 
     const endpoint = getApiEndpoint();
 
-    return redirect(
+    throw redirect(
         302,
         `${endpoint}/organizations/${params.organization}/invoices/${invoice.$id}/view`
     );

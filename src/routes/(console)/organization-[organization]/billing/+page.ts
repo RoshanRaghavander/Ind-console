@@ -12,7 +12,7 @@ export const load: PageLoad = async ({ parent, depends, url, route }) => {
     const { organization, scopes, currentPlan, countryList, locale } = await parent();
 
     if (!scopes.includes('billing.read')) {
-        return redirect(
+        throw redirect(
             302,
             resolve('/(console)/organization-[organization]', {
                 organization: organization.$id

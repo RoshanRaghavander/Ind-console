@@ -22,11 +22,12 @@ const requestContextHandle: import('@sveltejs/kit').Handle = async ({ event, res
 
     const saas = getSaaSConfig();
     const isTenantProtectedPath =
-        event.url.pathname.startsWith('/api/tenant/') || event.url.pathname.startsWith('/api/internal/');
+        event.url.pathname.startsWith('/api/tenant/') ||
+        event.url.pathname.startsWith('/api/internal/');
 
     if (saas.enforceTenantGuards && isTenantProtectedPath) {
         const access = ensureTenantAccess(event);
-        if (!access.ok) {
+        if (access.ok === false) {
             logSecurityWarn({
                 message: 'tenant_guard_blocked',
                 requestId,
