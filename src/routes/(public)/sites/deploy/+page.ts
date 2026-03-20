@@ -1,13 +1,11 @@
 import { sdk } from '$lib/stores/sdk.js';
 import { error, redirect } from '@sveltejs/kit';
 import { base } from '$app/paths';
-import { isCloud } from '$lib/system';
-import { BillingPlanGroup, ID, type Models } from '@appwrite.io/console';
+import type { Models } from '@appwrite.io/console';
 import { getTeamOrOrganizationList } from '$lib/stores/organization';
 import { redirectTo } from '$routes/store';
 import type { PageLoad } from './$types';
 import { getRepositoryInfo } from '$lib/helpers/github';
-import { getBasePlanFromGroup } from '$lib/stores/billing';
 
 export const load: PageLoad = async ({ parent, url }) => {
     const { account } = await parent();
@@ -80,28 +78,9 @@ export const load: PageLoad = async ({ parent, url }) => {
         };
     }
 
-    let organizations = await getTeamOrOrganizationList();
-
+    const organizations = await getTeamOrOrganizationList();
     if (!organizations?.total) {
-        try {
-            if (isCloud) {
-                await sdk.forConsole.organizations.create({
-                    organizationId: ID.unique(),
-                    name: 'Personal Projects',
-                    billingPlan: getBasePlanFromGroup(BillingPlanGroup.Starter).$id
-                });
-            } else {
-                await sdk.forConsole.teams.create({
-                    teamId: ID.unique(),
-                    name: 'Personal Projects'
-                });
-            }
-
-            // Refetch organizations after creation
-            organizations = await getTeamOrOrganizationList();
-        } catch (e) {
-            console.error('Failed to create default organization:', e);
-        }
+        throw redirect(303, `${base}/onboarding/create-organization${url.search}`);
     }
 
     return {

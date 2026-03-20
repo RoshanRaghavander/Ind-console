@@ -62,6 +62,11 @@
                 themeInUse === 'auto' ? (systemPrefersDark ? 'dark' : 'light') : themeInUse;
 
             document.body.setAttribute('class', `theme-${themeInUse}`);
+            const clearLoader = () => {
+                document.body.setAttribute('data-loading', 'false');
+            };
+            window.addEventListener('load', clearLoader, { once: true });
+            setTimeout(clearLoader, 8000);
         </script>
         <div id="svelte">%sveltekit.body%</div>
         <div class="page-loader">
